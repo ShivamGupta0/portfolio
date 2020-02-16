@@ -6,12 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Shivam Gupta</title>
+    <title>Shivam's Blog</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/album/">
 
     <!-- Bootstrap core CSS -->
-}
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- Favicons -->
@@ -55,7 +54,7 @@
     <div class="navbar-nav ml-auto">
       <a class="nav-item nav-link" href="https://github.com/ShivamGupta0">GitHub </a>
       <a class="nav-item nav-link" href="{% static 'resume.pdf' %}">Resume</a>
-      <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+      <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
       
     </div>
   </div>
@@ -63,36 +62,23 @@
 </header>
 
 <main role="main">
-
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1>Hi, I'm Shivam.</h1>
-      <p class="lead text-muted">I am a first year Undergraduate student of Electrical Engineering at Indian Institute of Technology, New Delhi. I am a tech enthusiast who likes creating new things and experimenting with things. I am a fast learner and enjoy challenges encountered along the way. I am always willing to learn new things with full enthusiasm and passion.
-      My hobbies include reading and travelling.I also enjoy watching sci-fi movies.Good food always lifts my mood.</p>
-      <p>
-        <a href="mailto:ee3190601@iitd.ac.in" class="btn btn-primary my-2">Email Me</a>
-  
-      </p>
-      <img src="{% static 'shivam.jpg'%}" height="300"  />
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row">
-        {% for job in jobs.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow">
-            <img class="card-img-top" src="{{job.image.url}}"/>
-            <div class="card-body">
-              <p class="card-text">{{job.summary}}</p>
-            
-            </div>
-          </div>
-        </div>
-        {% endfor %}
+  <div class="container">
+  <h1 class="text-center pt-3">Welcome to Shivam's Blog</h1>
+  <br/>
+  <br/>
+  <h2>Latest Posts</h2>
+  <hr/>
+{% for blog in blogs.all %}
+<a href="{% url 'detail' blog.id %}"><h3>{{blog.title}}</h3></a>
+{{blog.pub_date_pretty}}
+<br/>
+<img class="img-fluid" src="{{blog.image.url}}" height=200 width=200 />
+<br/>
+<p>{{blog.summary}}</p>
+{% endfor %}
+</div>
 </main>
+
 
 <footer class="text-muted">
   <div class="container text-center">
